@@ -26,7 +26,7 @@ async function getAllUsers(req, res) {
       res.locals.user.role === "admin" ||
       res.locals.user.role === "manager"
     ) {
-      const users = await UserModel.find(req.query,{ password: 0 });
+      const users = await UserModel.find(req.query, { password: 0 });
       res.status(200).json(users);
     } else {
       const users = await UserModel.find(
@@ -120,9 +120,9 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     const user = await UserModel.findByIdAndDelete(req.params.userId);
-    res.status(200).json(user);
+    res.status(202).json(`The user with email: ${user.email}, has been successfully deleted`);
   } catch (error) {
-    res.status(500).send(`Error deleting user: ${error}`);
+    res.status(400).send(`The user migth not exist in our database, here is the error code: ${error}`);
   }
 }
 
