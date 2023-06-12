@@ -4,6 +4,7 @@ const { authUser, authAdmin } = require("../utils");
 const {
   postSkills,
   deleteSkill,
+  fetchSkills,
   postLanguage,
   deleteLanguage,
   postNationality,
@@ -14,6 +15,7 @@ const {
 
 router.post("/skills", authUser, authAdmin, postSkills);
 router.delete("/skills/:skillId", authUser, authAdmin, deleteSkill);
+router.get("/skills", authUser, authAdmin, fetchSkills)
 router.post("/language", authUser, authAdmin, postLanguage);
 router.delete("/language/:languageId", authUser, authAdmin, deleteLanguage);
 router.post("/nationality", authUser, authAdmin, postNationality);

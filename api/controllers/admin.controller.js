@@ -21,6 +21,15 @@ async function deleteSkill(req, res) {
   }
 }
 
+async function fetchSkills(req, res) {
+  try {
+    const skills = await SkillsModel.find(req.query);
+    res.status(200).json(skills);
+  } catch (error) {
+    res.status(500).send(`Cant fetch all the skills: ${error}`);
+  }
+}
+
 async function postLanguage(req, res) {
   try {
     const language = await LanguagesModel.create(req.body);
@@ -84,6 +93,7 @@ async function deleteCategory(req, res) {
 module.exports = {
   postSkills,
   deleteSkill,
+  fetchSkills,
   postLanguage,
   deleteLanguage,
   postNationality,
