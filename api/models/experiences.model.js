@@ -45,7 +45,7 @@ const experienceSchema = new mongoose.Schema({
   other: {
     drivingLicense: {
       type: String,
-      enum: ["A1", "A2", "A", "B"],
+      enum: ["No", "A1", "A2", "A", "B"],
     },
     ownCar: {
       type: String,

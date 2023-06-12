@@ -87,7 +87,7 @@ async function deleteUserProfile(req, res) {
     experience.experience.remove(req.params.expId);
     experience.save();
     // Delete the requisitions from DB
-    
+
     // Delete the user from DB
     const user = await UserModel.findByIdAndDelete(res.locals.user.id);
     res.status(200).json(`${user.email}, has been delete.`);
