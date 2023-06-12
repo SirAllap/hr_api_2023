@@ -10,8 +10,7 @@ const {
 } = require("../controllers/users.controller");
 
 router.post("/", authUser, authAdmin, createUser);
-// router.get("/", authUser, authRole, getAllUsers); // get all users candidates
-router.get("/", getAllUsers);
+router.get("/", authUser, authRole, getAllUsers); // get all users candidates
 router.get("/:userId", authUser, authRole, getOneUser);
 router.put("/:userId", authUser, authAdmin, updateUser);
 router.delete("/:userId", authUser, authAdmin, deleteUser);
