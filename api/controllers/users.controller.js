@@ -20,35 +20,44 @@ async function createUser(req, res) {
   }
 }
 
+// async function getAllUsers(req, res) {
+//   try {
+//     if (
+//       res.locals.user.role === "admin" ||
+//       res.locals.user.role === "manager"
+//     ) {
+//       const users = await UserModel.find(req.query, { password: 0 });
+//       res.status(200).json(users);
+//     } else {
+//       const users = await UserModel.find(
+//         {
+//           role: "candidate",
+//         },
+//         { password: 0 }
+//       ).populate({
+//         path: "requisition",
+//         select: { candidate: 0, __v: 0 },
+//         populate: {
+//           path: "jobPost",
+//           model: "jobOffer",
+//           select: { title: 1 },
+//         },
+//       });
+//       res.status(200).json(users);
+//     }
+//   } catch (error) {
+//     res.status(500).send(`Error obtaining users: ${error}`);
+//   }
+// }
 async function getAllUsers(req, res) {
   try {
-    if (
-      res.locals.user.role === "admin" ||
-      res.locals.user.role === "manager"
-    ) {
-      const users = await UserModel.find(req.query, { password: 0 });
-      res.status(200).json(users);
-    } else {
-      const users = await UserModel.find(
-        {
-          role: "candidate",
-        },
-        { password: 0 }
-      ).populate({
-        path: "requisition",
-        select: { candidate: 0, __v: 0 },
-        populate: {
-          path: "jobPost",
-          model: "jobOffer",
-          select: { title: 1 },
-        },
-      });
-      res.status(200).json(users);
-    }
+    const users = await UserModel.find(req.query, { password: 0 });
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).send(`Error obtaining users: ${error}`);
   }
 }
+
 
 async function getOneUser(req, res) {
   try {
